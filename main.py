@@ -13,7 +13,7 @@ import weather
 import play
 import read
 import sendmail
-
+import CPU
 
 def respond(AudioString):
     pyttsx3.speak(AudioString)
@@ -108,6 +108,17 @@ def digital_assistant(data):
         body = listen()
 
         sendmail.send(to, sub, body)
+    if ("cpu" and "usage") in data:     
+        CPU.cpuUsage()
+    
+    if ("cpu" and "battery") in data:
+        CPU.cpuBattery()
+    
+    if ("shutdown") in data:
+        CPU.shutdown()
+    
+    if ("restart") in data:
+        CPU.restart()
 
     print(data)
 
